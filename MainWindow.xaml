@@ -1,0 +1,94 @@
+﻿<Window x:Class="TEC_MegaOpgave.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TEC_MegaOpgave"
+        mc:Ignorable="d"
+        Title="Reparations afd. Main" Height="700" Width="900"
+        ResizeMode="CanMinimize">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height=".7*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Hello, " FontSize="18" Margin="20" Height="30" Width="55" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="EmployeeNameBox" Height="30" Width="150" Margin="75,23.5" Padding="5" Background="AliceBlue" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold"/>
+        <Button Grid.Column="2" FontSize="18" Content="Refresh" x:Name="RefreshView" Click="RefreshView_Click" Height="30" Width="100" Background="AntiqueWhite"/>
+
+        <Border  Background="Blue" CornerRadius="10" Height="35" Width="97" BorderThickness="2" Grid.Column="5" Grid.Row="0">
+            <Button x:Name="LogOutButton" Background="Blue" BorderBrush="Blue" Foreground="White" FontSize="18" Width="80" Content="Log Out"  Height="30" Margin="6,0,7,0" VerticalAlignment="Top" Click="LogOutButton_Click" >
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Blue"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Blue"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Border>
+
+        <Border BorderBrush="Blue" BorderThickness="1" Grid.Row="1" Grid.ColumnSpan="5" Background="AliceBlue"/>
+        <Label Content="Subject" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="DemiBold"/>
+        <Label Content="Date" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="DemiBold"/>
+        <Label Content="Status" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="DemiBold"/>
+        <Label Content="Technical" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="DemiBold"/>
+        <Label Content="Pickup Time" Grid.Column="4" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="DemiBold"/>
+
+        <ScrollViewer Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="5" HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl x:Name="DisplayTickets">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:Name="TicketList">
+                        <StackPanel x:Name="AllTickets" Orientation="Horizontal">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="45"/>
+                                    <ColumnDefinition Width="300"/>
+                                    <ColumnDefinition Width="140"/>
+                                    <ColumnDefinition Width="140"/>
+                                    <ColumnDefinition Width="140"/>
+                                    <ColumnDefinition Width="140"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Margin="5" Grid.Column="0" Content="Open" Click="ShowTicket_Click"></Button>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Grid.Column="1" Text="{Binding Subject}"/>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Grid.Column="2" Text="{Binding Date}"/>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Grid.Column="3" Text="{Binding Status}"/>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Grid.Column="4" Text="{Binding Technical}"/>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Grid.Column="5" Text="{Binding PickupTime}"/>
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+    </Grid>
+
+</Window>
